@@ -558,10 +558,10 @@
             this.btn_xoasale.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_xoasale.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btn_xoasale.ForeColor = System.Drawing.Color.Black;
-            this.btn_xoasale.Location = new System.Drawing.Point(191, 316);
+            this.btn_xoasale.Location = new System.Drawing.Point(14, 303);
             this.btn_xoasale.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_xoasale.Name = "btn_xoasale";
-            this.btn_xoasale.Size = new System.Drawing.Size(90, 50);
+            this.btn_xoasale.Size = new System.Drawing.Size(266, 63);
             this.btn_xoasale.SizeImage = new System.Drawing.Size(20, 20);
             this.btn_xoasale.TabIndex = 44;
             this.btn_xoasale.Text = "Xóa";

@@ -20,16 +20,19 @@ namespace C_GUI.QLForm
         public void LoadData(List<GiayView> giayViews)
         {
             int stt = 1;
-            dgrid_showGiay.ColumnCount = 3;
-            dgrid_showGiay.Columns[0].Name = "stt";
+            dgrid_showGiay.ColumnCount = 5;
 
-            dgrid_showGiay.Columns[1].Name = "ma";
-            dgrid_showGiay.Columns[2].Name = "ten";
+            dgrid_showGiay.Columns[0].Name = "stt";
+            dgrid_showGiay.Columns[1].Name = "id";
+            dgrid_showGiay.Columns[2].Name = "ma";
+            dgrid_showGiay.Columns[3].Name = "ten";
+            dgrid_showGiay.Columns[4].Name = "trang thai";
+            dgrid_showGiay.Rows.Clear();
             dgrid_showGiay.Columns[1].Visible = true;
             foreach (GiayView a in giayViews)
             {
 
-                _ = dgrid_showGiay.Rows.Add(stt++, a.Giay.MaGiay, a.Giay.TenGiay, a.Giay.TrangThai == 1 ? "hoạt động" : "Không hoạt động");
+                _ = dgrid_showGiay.Rows.Add(stt++,a.Giay.Id ,a.Giay.MaGiay, a.Giay.TenGiay, a.Giay.TrangThai == 1 ? "hoạt động" : "Không hoạt động");
             }
 
         }
@@ -38,8 +41,8 @@ namespace C_GUI.QLForm
         {
             return new Giay()
             {
-                MaGiay = txt_ma.Text,
-                TenGiay = txt_ten.Text,
+                MaGiay = txt_ma.Texts,
+                TenGiay = txt_ten.Texts,
                 TrangThai = cbx_hoatdong.Checked == true ? 1 : 0,
             };
         }
@@ -47,8 +50,8 @@ namespace C_GUI.QLForm
         {
             int index = e.RowIndex;
             _ID = Guid.Parse(dgrid_showGiay.Rows[index].Cells[1].Value.ToString());
-            txt_ma.Text = dgrid_showGiay.Rows[index].Cells[2].Value.ToString();
-            txt_ten.Text = dgrid_showGiay.Rows[index].Cells[3].Value.ToString();
+            txt_ma.Texts = dgrid_showGiay.Rows[index].Cells[2].Value.ToString();
+            txt_ten.Texts = dgrid_showGiay.Rows[index].Cells[3].Value.ToString();
             if (dgrid_showGiay.Rows[index].Cells[4].Value.ToString() == "hoat dong")
             {
                 cbx_hoatdong.Checked = true;
@@ -75,7 +78,7 @@ namespace C_GUI.QLForm
             DialogResult dialogResult = MessageBox.Show("Bạn có muốn sửa", "Thông báo", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                bool thongBao = _IQLGiay.Update(new A_DAL.Entities.Giay() { Id = _ID, MaGiay = txt_ma.Text, TenGiay = txt_ten.Text, TrangThai = cbx_hoatdong.Checked == true ? 1 : 0 });
+                bool thongBao = _IQLGiay.Update(new A_DAL.Entities.Giay() { Id = _ID, MaGiay = txt_ma.Texts, TenGiay = txt_ten.Texts, TrangThai = cbx_hoatdong.Checked == true ? 1 : 0 });
                 if (thongBao)
                 {
                     _ = MessageBox.Show("Sửa thành công");

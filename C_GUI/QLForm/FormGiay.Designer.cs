@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txt_timkiem = new C_GUI.RJControls.RJTextBox();
             this.txt_ten = new C_GUI.RJControls.RJTextBox();
             this.txt_ma = new C_GUI.RJControls.RJTextBox();
             this.dgrid_showGiay = new System.Windows.Forms.DataGridView();
@@ -40,7 +41,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.txt_timkiem = new C_GUI.RJControls.RJTextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgrid_showGiay)).BeginInit();
             this.SuspendLayout();
@@ -69,6 +69,30 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "THÔNG TIN GIÀY";
+            // 
+            // txt_timkiem
+            // 
+            this.txt_timkiem.BackColor = System.Drawing.SystemColors.Window;
+            this.txt_timkiem.BorderColor = System.Drawing.Color.Black;
+            this.txt_timkiem.BorderFocusColor = System.Drawing.Color.Red;
+            this.txt_timkiem.BorderRadius = 15;
+            this.txt_timkiem.BorderSize = 2;
+            this.txt_timkiem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txt_timkiem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txt_timkiem.Location = new System.Drawing.Point(13, 338);
+            this.txt_timkiem.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txt_timkiem.MaxLength = 20;
+            this.txt_timkiem.Multiline = false;
+            this.txt_timkiem.Name = "txt_timkiem";
+            this.txt_timkiem.Padding = new System.Windows.Forms.Padding(9, 5, 9, 5);
+            this.txt_timkiem.PasswordChar = false;
+            this.txt_timkiem.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.txt_timkiem.PlaceholderText = "";
+            this.txt_timkiem.Size = new System.Drawing.Size(249, 27);
+            this.txt_timkiem.TabIndex = 26;
+            this.txt_timkiem.Texts = "";
+            this.txt_timkiem.UnderlinedStyle = false;
+            this.txt_timkiem._TextChanged += new System.EventHandler(this.txt_timkiem__TextChanged);
             // 
             // txt_ten
             // 
@@ -128,6 +152,7 @@
             this.dgrid_showGiay.RowTemplate.Height = 29;
             this.dgrid_showGiay.Size = new System.Drawing.Size(754, 161);
             this.dgrid_showGiay.TabIndex = 23;
+            this.dgrid_showGiay.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgrid_showGiay_CellContentClick);
             // 
             // btn_xoa
             // 
@@ -148,6 +173,7 @@
             this.btn_xoa.Text = "Xóa";
             this.btn_xoa.TextColor = System.Drawing.Color.Black;
             this.btn_xoa.UseVisualStyleBackColor = false;
+            this.btn_xoa.Click += new System.EventHandler(this.btn_xoa_Click);
             // 
             // btn_sua
             // 
@@ -168,6 +194,7 @@
             this.btn_sua.Text = "Sửa";
             this.btn_sua.TextColor = System.Drawing.Color.Black;
             this.btn_sua.UseVisualStyleBackColor = false;
+            this.btn_sua.Click += new System.EventHandler(this.btn_sua_Click);
             // 
             // btn_them
             // 
@@ -188,6 +215,7 @@
             this.btn_them.Text = "Thêm";
             this.btn_them.TextColor = System.Drawing.Color.Black;
             this.btn_them.UseVisualStyleBackColor = false;
+            this.btn_them.Click += new System.EventHandler(this.btn_them_Click);
             // 
             // cbx_hoatdong
             // 
@@ -247,30 +275,6 @@
             this.label1.Size = new System.Drawing.Size(50, 15);
             this.label1.TabIndex = 0;
             this.label1.Text = "Mã Giày";
-            // 
-            // txt_timkiem
-            // 
-            this.txt_timkiem.BackColor = System.Drawing.SystemColors.Window;
-            this.txt_timkiem.BorderColor = System.Drawing.Color.Black;
-            this.txt_timkiem.BorderFocusColor = System.Drawing.Color.Red;
-            this.txt_timkiem.BorderRadius = 15;
-            this.txt_timkiem.BorderSize = 2;
-            this.txt_timkiem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txt_timkiem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txt_timkiem.Location = new System.Drawing.Point(13, 338);
-            this.txt_timkiem.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.txt_timkiem.MaxLength = 20;
-            this.txt_timkiem.Multiline = false;
-            this.txt_timkiem.Name = "txt_timkiem";
-            this.txt_timkiem.Padding = new System.Windows.Forms.Padding(9, 5, 9, 5);
-            this.txt_timkiem.PasswordChar = false;
-            this.txt_timkiem.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.txt_timkiem.PlaceholderText = "";
-            this.txt_timkiem.Size = new System.Drawing.Size(249, 27);
-            this.txt_timkiem.TabIndex = 26;
-            this.txt_timkiem.Texts = "";
-            this.txt_timkiem.UnderlinedStyle = false;
-            this.txt_timkiem._TextChanged += new System.EventHandler(this.txt_timkiem__TextChanged);
             // 
             // FormGiay
             // 

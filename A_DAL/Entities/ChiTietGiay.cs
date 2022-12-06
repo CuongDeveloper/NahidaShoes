@@ -20,6 +20,7 @@
         public float GiaNhap { get; set; } = 0!;
         public int SoLuongTon { get; set; } = 0!;
         public int TrangThai { get; set; } = 0!;
+        public string? Anh { get; set; }
         public MauSac IdMauSacNavigation { get; set; } = null!;
         public Nsx IdNsxNavigation { get; set; } = null!;
         public Size IdSizeNavigation { get; set; } = null!;
