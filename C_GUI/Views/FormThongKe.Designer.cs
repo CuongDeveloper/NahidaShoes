@@ -30,8 +30,6 @@
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this._dgrv_doanhthu = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.cmb_ngay = new System.Windows.Forms.ComboBox();
             this.cmb_loc = new System.Windows.Forms.ComboBox();
@@ -60,24 +58,6 @@
             this._dgrv_doanhthu.RowTemplate.Height = 29;
             this._dgrv_doanhthu.Size = new System.Drawing.Size(1091, 238);
             this._dgrv_doanhthu.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(11, 88);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(81, 20);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Theo Ngày";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(385, 88);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(87, 20);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Theo Tháng";
             // 
             // label3
             // 
@@ -138,8 +118,6 @@
             this.Controls.Add(this.cmb_loc);
             this.Controls.Add(this.cmb_ngay);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox1);
             this.Name = "FormThongKe";
             this.Text = "FormThongKe";
@@ -153,8 +131,6 @@
         #endregion
         private GroupBox groupBox1;
         private DataGridView _dgrv_doanhthu;
-        private Label label1;
-        private Label label2;
         private Label label3;
         private ComboBox cmb_ngay;
         private ComboBox cmb_loc;

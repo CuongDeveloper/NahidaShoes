@@ -8,6 +8,7 @@ namespace B_BUS.IServices
         bool Add(ChiTietTheLoai obj);
         bool Update(ChiTietTheLoai obj);
         bool Delete(ChiTietTheLoai obj);
+        bool checkma(Guid obj);
         List<ChiTietTheLoaiView> GetAllView();
     }
 }

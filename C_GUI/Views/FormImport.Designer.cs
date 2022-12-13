@@ -106,6 +106,7 @@
             this.Controls.Add(this.btn_link);
             this.Name = "FormImport";
             this.Text = "FormImport";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormImport_FormClosed);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this._dgrvThongTinSanPham)).EndInit();
             this.ResumeLayout(false);

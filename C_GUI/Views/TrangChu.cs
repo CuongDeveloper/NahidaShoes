@@ -1,4 +1,6 @@
 ﻿using A_DAL.Entities;
+using B_BUS.IServices;
+using B_BUS.Services;
 using C_GUI.QLForm;
 
 namespace C_GUI.Views
@@ -10,6 +12,7 @@ namespace C_GUI.Views
         private int tempIndex;
         private Form? activeForm;
         public static NhanVien? NhanVienLogin;
+        private readonly IQLChucVu _qlChucVu;
 
         public TrangChu()
         {
@@ -17,6 +20,8 @@ namespace C_GUI.Views
             random = new Random();
             _rjbtndong.Visible = false;
             Customdesign();
+            _qlChucVu = new QLChucVu();
+            _lblThongTinNhanVien.Text = NhanVienLogin.MaNhanVien + " - " + NhanVienLogin.TenNhanVien + " - " + _qlChucVu.GetAll().FirstOrDefault(c => c.Id == NhanVienLogin.IdChucVu).TenChucVu;
         }
 
         private void Customdesign()
@@ -215,6 +220,17 @@ namespace C_GUI.Views
 
         private void btn_thongke_Click(object sender, EventArgs e)
         {
+            if (_qlChucVu.GetAll().FirstOrDefault(c => c.Id == NhanVienLogin.IdChucVu).MaChucVu != "QuanLi")
+            {
+                if (CheckChucVu())
+                {
+                    Application.Restart();
+                }
+                else
+                {
+                    return;
+                }
+            }
             OpenChildForms(new FormThongKe(), sender);
         }
 
@@ -225,7 +241,19 @@ namespace C_GUI.Views
 
         private void btn_sanpham_Click_1(object sender, EventArgs e)
         {
+            if (_qlChucVu.GetAll().FirstOrDefault(c => c.Id == NhanVienLogin.IdChucVu).MaChucVu != "QuanLi")
+            {
+                if (CheckChucVu())
+                {
+                    Application.Restart();
+                }
+                else
+                {
+                    return;
+                }
+            }
             showsubmenu(panelplaylizt);
+
         }
 
         private void iconButton1_Click(object sender, EventArgs e)
@@ -282,8 +310,31 @@ namespace C_GUI.Views
 
         private void iconButton10_Click(object sender, EventArgs e)
         {
+            if (_qlChucVu.GetAll().FirstOrDefault(c => c.Id == NhanVienLogin.IdChucVu).MaChucVu != "QuanLi")
+            {
+                if (CheckChucVu())
+                {
+                    Application.Restart();
+                }
+                else
+                {
+                    return;
+                }
+            }
             OpenChildForms(new FormSale(), sender);
             Hidesubmenu();
+        }
+
+        private void _lblThongTinNhanVien_DoubleClick(object sender, EventArgs e)
+        {
+            FormNhanVien formNhanVien = new();
+            formNhanVien.Show();
+        }
+
+        private bool CheckChucVu()
+        {
+            DialogResult result = MessageBox.Show("Tài khoản của bạn không có quyền sử dụng tính năng này bấm OK để đăng xuất", "Thông báo", MessageBoxButtons.OKCancel);
+            return result == DialogResult.OK;
         }
     }
 }
