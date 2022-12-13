@@ -23,8 +23,8 @@ namespace C_GUI.Views
         private HoaDon? hoaDon;
         private Guid idHoaDonChiTiet;
         private HoaDonChiTiet? hoaDonChiTiet;
-        Guid idThanhToanOnline;
-        Guid idThanhToanOffline;
+        private readonly Guid idThanhToanOnline;
+        private readonly Guid idThanhToanOffline;
 
         public FormBanHang()
         {
@@ -439,8 +439,8 @@ namespace C_GUI.Views
                                     hoaDon.ThoiGianThanhToan = DateTime.Now;
                                     hoaDon.GiamGia = Convert.ToSingle(_tbxGiamGia.Texts.Trim());
                                     hoaDon.GhiChu = _tbxGhiChu.Texts.Trim();
-                                    _qlChiTietThanhToan.Add(new ChiTietThanhToan() { IdHoaDon = hoaDon.Id, IdPhuongThucThanhToan = idThanhToanOnline, SoTienThanhToan = Convert.ToSingle(_tbxThanhToanOnline.Texts.Trim()) });
-                                    _qlChiTietThanhToan.Add(new ChiTietThanhToan() { IdHoaDon = hoaDon.Id, IdPhuongThucThanhToan = idThanhToanOffline, SoTienThanhToan = Convert.ToSingle(_tbxTienKhachDua.Texts.Trim()) });
+                                    _ = _qlChiTietThanhToan.Add(new ChiTietThanhToan() { IdHoaDon = hoaDon.Id, IdPhuongThucThanhToan = idThanhToanOnline, SoTienThanhToan = Convert.ToSingle(_tbxThanhToanOnline.Texts.Trim()) });
+                                    _ = _qlChiTietThanhToan.Add(new ChiTietThanhToan() { IdHoaDon = hoaDon.Id, IdPhuongThucThanhToan = idThanhToanOffline, SoTienThanhToan = Convert.ToSingle(_tbxTienKhachDua.Texts.Trim()) });
                                     _ = _qlHoaDon.Update(hoaDon);
                                     _ = MessageBox.Show("Thanh toán thành công");
                                     LoadHoaDon(_qlHoaDon.GetAllView().ToList());
@@ -452,8 +452,8 @@ namespace C_GUI.Views
                             hoaDon.GiamGia = Convert.ToSingle(_tbxGiamGia.Texts.Trim());
                             hoaDon.GhiChu = _tbxGhiChu.Texts.Trim();
                             hoaDon.TongSoTien = Convert.ToSingle(_tbxTongTien.Texts.Trim());
-                            _qlChiTietThanhToan.Add(new ChiTietThanhToan() { IdHoaDon = hoaDon.Id, IdPhuongThucThanhToan = idThanhToanOnline, SoTienThanhToan = Convert.ToSingle(_tbxThanhToanOnline.Texts.Trim()) });
-                            _qlChiTietThanhToan.Add(new ChiTietThanhToan() { IdHoaDon = hoaDon.Id, IdPhuongThucThanhToan = idThanhToanOffline, SoTienThanhToan = Convert.ToSingle(_tbxTienKhachDua.Texts.Trim()) });
+                            _ = _qlChiTietThanhToan.Add(new ChiTietThanhToan() { IdHoaDon = hoaDon.Id, IdPhuongThucThanhToan = idThanhToanOnline, SoTienThanhToan = Convert.ToSingle(_tbxThanhToanOnline.Texts.Trim()) });
+                            _ = _qlChiTietThanhToan.Add(new ChiTietThanhToan() { IdHoaDon = hoaDon.Id, IdPhuongThucThanhToan = idThanhToanOffline, SoTienThanhToan = Convert.ToSingle(_tbxTienKhachDua.Texts.Trim()) });
                             _ = _qlHoaDon.Update(hoaDon);
                             _ = MessageBox.Show("Thanh toán thành công");
                             LoadHoaDon(_qlHoaDon.GetAllView().ToList());

@@ -99,7 +99,7 @@ namespace C_GUI.Views
                         catch (Exception)
                         {
                             _ = MessageBox.Show("Error");
-                           
+
                         }
                     }
                 }
@@ -115,7 +115,7 @@ namespace C_GUI.Views
 
         private void rjButton2_Click(object sender, EventArgs e)
         {
-          
+
             DialogResult dialogResult = MessageBox.Show("Bạn Muốn Lưu Dữ Liệu chứ ?", "Thông Báo", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
@@ -136,95 +136,95 @@ namespace C_GUI.Views
                         SoluongTon = int.Parse(_dgrvThongTinSanPham.Rows[i].Cells[9].Value.ToString());
                         if (TenMausac == "")
                         {
-                            MessageBox.Show("Màu Sắc Không Để Trống");
+                            _ = MessageBox.Show("Màu Sắc Không Để Trống");
                             return;
                         }
 
                         if (TenNSX == "")
                         {
-                            MessageBox.Show("Tên Nhà Sản Xuất không Được Để Trống");
+                            _ = MessageBox.Show("Tên Nhà Sản Xuất không Được Để Trống");
                             return;
                         }
 
-                        if (TenSize=="")
+                        if (TenSize == "")
                         {
-                            MessageBox.Show("Không Được Để trống Tên Size");
+                            _ = MessageBox.Show("Không Được Để trống Tên Size");
                             return;
                         }
 
-                        if (TenHangGiay=="")
+                        if (TenHangGiay == "")
                         {
-                            MessageBox.Show("Không Được Để Trông");
+                            _ = MessageBox.Show("Không Được Để Trông");
                             return;
                         }
 
-                        if (Convert.ToString(KichCo)=="")
+                        if (Convert.ToString(KichCo) == "")
                         {
-                            MessageBox.Show("Không Được Để Trống");
+                            _ = MessageBox.Show("Không Được Để Trống");
                             return;
                         }
 
-                        if (TenGiay =="")
+                        if (TenGiay == "")
                         {
-                            MessageBox.Show("Không Được Để Trống Tên Giày");
+                            _ = MessageBox.Show("Không Được Để Trống Tên Giày");
                             return;
                         }
 
-                        if (Convert.ToString(GiaNhap)=="")
+                        if (Convert.ToString(GiaNhap) == "")
                         {
-                            MessageBox.Show("Không Được Để Trống Giá Nhập");
+                            _ = MessageBox.Show("Không Được Để Trống Giá Nhập");
                             return;
                         }
                         if (Convert.ToString(GiaBan) == "")
                         {
-                            MessageBox.Show("Không Được Để Trống Giá Bán");
+                            _ = MessageBox.Show("Không Được Để Trống Giá Bán");
                             return;
                         }
                         if (Convert.ToString(SoluongTon) == "")
                         {
-                            MessageBox.Show("Không Được Để Trống Số Lượng Tồn");
+                            _ = MessageBox.Show("Không Được Để Trống Số Lượng Tồn");
                             return;
                         }
 
 
-                        if (KichCo>=50)
+                        if (KichCo >= 50)
                         {
-                            MessageBox.Show("Không Có giày loại này");
+                            _ = MessageBox.Show("Không Có giày loại này");
                             return;
                         }
-                        if (GiaNhap > GiaBan) 
+                        if (GiaNhap > GiaBan)
                         {
-                            MessageBox.Show("Giá Nhập Lơn Hơn Giá Bán");
+                            _ = MessageBox.Show("Giá Nhập Lơn Hơn Giá Bán");
                             return;
                         }
                         if (SoluongTon == 0)
                         {
-                            MessageBox.Show("Số Lượng Tồn Không ai lại đi Nhập là Không cả");
+                            _ = MessageBox.Show("Số Lượng Tồn Không ai lại đi Nhập là Không cả");
                             return;
                         }
                         if (GiaBan == 0)
                         {
-                            MessageBox.Show("Giá bán Không ai lại đi Nhập là Không cả Buôn bán là Phải có lãi");
+                            _ = MessageBox.Show("Giá bán Không ai lại đi Nhập là Không cả Buôn bán là Phải có lãi");
                             return;
                         }
 
-                        if (GiaNhap<=0)
+                        if (GiaNhap <= 0)
                         {
-                            MessageBox.Show("Không Được Nhập Âm Tiền");
+                            _ = MessageBox.Show("Không Được Nhập Âm Tiền");
                             return;
                         }
                         if (GiaBan <= 0)
                         {
-                            MessageBox.Show("Không Được Nhập Âm Tiền");
+                            _ = MessageBox.Show("Không Được Nhập Âm Tiền");
                             return;
                         }
 
                         if (SoluongTon <= 0)
                         {
-                            MessageBox.Show("Vui Lòng Không Nhập số lượng tồn Âm");
+                            _ = MessageBox.Show("Vui Lòng Không Nhập số lượng tồn Âm");
                             return;
                         }
-                       
+
 
 
                         try
@@ -249,22 +249,22 @@ namespace C_GUI.Views
                         if (Regex.IsMatch(TenMausac, @"[0-9]+") == true)
                         {
 
-                            MessageBox.Show("Mã màu Sắc Không chứa Số ", "ERR");
-                            return ;
+                            _ = MessageBox.Show("Mã màu Sắc Không chứa Số ", "ERR");
+                            return;
                         }
                         if (Regex.IsMatch(TenNSX, @"[0-9]+") == true)
                         {
 
-                            MessageBox.Show("Tên Nhà Sản Xuất Không chứa Số ", "ERR");
+                            _ = MessageBox.Show("Tên Nhà Sản Xuất Không chứa Số ", "ERR");
                             return;
                         }
                         if (Regex.IsMatch(Convert.ToString(KichCo), @"^[a-zA-Z]") == true)
                         {
 
-                            MessageBox.Show("Tên nhân Viên không được chứa số", "ERR");
-                            return ;
+                            _ = MessageBox.Show("Tên nhân Viên không được chứa số", "ERR");
+                            return;
                         }
-                        
+
                         Guid IdNsx = _Nsx.IdNsx(n);
                         //  MessageBox.Show(IdNsx.ToString());
 
@@ -337,7 +337,7 @@ namespace C_GUI.Views
                         _ = MessageBox.Show("Hãy Nhập Đúng Giá Trị Đầu Vào");
                     }
                 }
-                
+
 
 
 
@@ -346,8 +346,8 @@ namespace C_GUI.Views
 
         private void FormImport_FormClosed(object sender, FormClosedEventArgs e)
         {
-            TrangChu trnagChu = new TrangChu();
-            this.Hide();
+            TrangChu trnagChu = new();
+            Hide();
             trnagChu.Show();
         }
     }

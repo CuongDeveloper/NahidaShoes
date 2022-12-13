@@ -58,7 +58,7 @@ namespace B_BUS.Services
             return !igchiTietGiay.GetAll().Any(c => c.IdSize == idSize && c.IdGiay == idGiay && c.IdNsx == idNsx && c.IdChieuCaoDeGiay == idChieuCaoDeGiay && c.IdHangGiay == idHangGiay && c.IdMauSac == idMauSac);
         }
 
-       
+
 
         public List<ChiTietGiayView> GetAllView()
         {
