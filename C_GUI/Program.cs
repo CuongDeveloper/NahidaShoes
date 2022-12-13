@@ -1,3 +1,4 @@
+using C_GUI.QLForm;
 using C_GUI.Views;
 
 namespace C_GUI
@@ -15,7 +16,7 @@ namespace C_GUI
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new FormThongKe());
+            Application.Run(new FormKhachHang());
 
         }
     }

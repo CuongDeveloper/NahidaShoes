@@ -208,20 +208,20 @@ namespace C_GUI.Views
                             return;
                         }
 
-                        if (GiaNhap<=0)
+                        if (GiaNhap<0)
                         {
-                            MessageBox.Show("Không Được Nhập Âm Tiền");
+                            MessageBox.Show("Không Được Nhập Âm Tiền Hoặc 0");
                             return;
                         }
-                        if (GiaBan <= 0)
+                        if (GiaBan < 0)
                         {
-                            MessageBox.Show("Không Được Nhập Âm Tiền");
+                            MessageBox.Show("Không Được Nhập Âm Tiền Hoặc 0");
                             return;
                         }
 
-                        if (SoluongTon <= 0)
+                        if (SoluongTon < 0)
                         {
-                            MessageBox.Show("Vui Lòng Không Nhập số lượng tồn Âm");
+                            MessageBox.Show("Vui Lòng Không Nhập số lượng tồn Âm hoặc không");
                             return;
                         }
                        
@@ -239,13 +239,7 @@ namespace C_GUI.Views
                             _ = MessageBox.Show("KHông Nhập chữ hoặc Ký Tự Đặc Biêt");
                             return;
                         }
-                        Nsx n = new()
-                        {
-                            MaNsx = (_Nsx.GetAll().Count + 1).ToString(),
-                            TenNsx = TenNSX,
-                            DiaChi = "Ha Noi",
-                            TrangThai = 1
-                        };
+                        
                         if (Regex.IsMatch(TenMausac, @"[0-9]+") == true)
                         {
 
@@ -264,7 +258,13 @@ namespace C_GUI.Views
                             MessageBox.Show("Tên nhân Viên không được chứa số", "ERR");
                             return ;
                         }
-                        
+                        Nsx n = new()
+                        {
+                            MaNsx = (_Nsx.GetAll().Count + 1).ToString(),
+                            TenNsx = TenNSX,
+                            DiaChi = "Ha Noi",
+                            TrangThai = 1
+                        };
                         Guid IdNsx = _Nsx.IdNsx(n);
                         //  MessageBox.Show(IdNsx.ToString());
 

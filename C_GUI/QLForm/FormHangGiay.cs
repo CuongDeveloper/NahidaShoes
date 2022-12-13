@@ -14,6 +14,9 @@ namespace C_GUI.QLForm
             _iQLHangGiay = new QLHangGiay();
             InitializeComponent();
             LoadData(_iQLHangGiay.GetAllView());
+            txt_ma.Enabled = false;
+            rbtn_hoatdong.Checked = true;
+
         }
         public void LoadData(List<HangGiayView> hangGiayViews)
         {
@@ -26,6 +29,7 @@ namespace C_GUI.QLForm
             dgrid_show.Columns[4].Name = "trang thai";
             dgrid_show.Rows.Clear();
             dgrid_show.Columns[1].Visible = true;
+            dgrid_show.AllowUserToAddRows = false;
             foreach (B_BUS.View_Models.HangGiayView a in hangGiayViews)
             {
                 _ = dgrid_show.Rows.Add(stt++, a.HangGiay.Id, a.HangGiay.MaHangGiay, a.HangGiay.TenHangGiay, a.HangGiay.TrangThai == 1 ? "hoat dong" : "khong hoat dong");
@@ -36,7 +40,7 @@ namespace C_GUI.QLForm
         {
             return new HangGiay()
             {
-                MaHangGiay = txt_ma.Texts,
+                MaHangGiay = (_iQLHangGiay.GetAll().Count + 1).ToString(),
                 TenHangGiay = txt_ten.Texts,
                 TrangThai = rbtn_hoatdong.Checked == true ? 1 : 0,
             };
@@ -44,26 +48,52 @@ namespace C_GUI.QLForm
 
         private void btn_them_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Bạn có muốn thêm", "Thông báo", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
+            try
             {
-                _ = _iQLHangGiay.Add(GetCtrlValues());
-                LoadData(_iQLHangGiay.GetAllView());
+                if (string.IsNullOrEmpty(txt_ten.Texts))
+                {
+                    _ = MessageBox.Show("Vui Lòng Không Để Trống");
+                    return;
+                }
+                DialogResult dialogResult = MessageBox.Show("Bạn có muốn thêm", "Thông báo", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    _ = _iQLHangGiay.Add(GetCtrlValues());
+                    LoadData(_iQLHangGiay.GetAllView());
+                }
+
             }
+            catch (Exception exception)
+            {
+                MessageBox.Show("vui Lòng Chọn lại Giá Trị Đầu Vào");
+            }
+           
 
         }
 
         private void btn_sua_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Bạn có muốn sửa", "Thông báo", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
+            try
             {
-                bool thongBao = _iQLHangGiay.Update(new A_DAL.Entities.HangGiay() { Id = _ID, MaHangGiay = txt_ma.Texts, TenHangGiay = txt_ten.Texts, TrangThai = rbtn_hoatdong.Checked == true ? 1 : 0 });
-                if (thongBao)
+                if (string.IsNullOrEmpty(txt_ten.Texts))
                 {
-                    _ = MessageBox.Show("Sửa thành công");
-                    LoadData(_iQLHangGiay.GetAllView());
+                    _ = MessageBox.Show("Vui Lòng Không Để Trống");
+                    return;
                 }
+                DialogResult dialogResult = MessageBox.Show("Bạn có muốn sửa", "Thông báo", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    bool thongBao = _iQLHangGiay.Update(new A_DAL.Entities.HangGiay() { Id = _ID, MaHangGiay = txt_ma.Texts, TenHangGiay = txt_ten.Texts, TrangThai = rbtn_hoatdong.Checked == true ? 1 : 0 });
+                    if (thongBao)
+                    {
+                        _ = MessageBox.Show("Sửa thành công");
+                        LoadData(_iQLHangGiay.GetAllView());
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show("Vui Lòng Nhập Giá Trị Đầu vào");
             }
 
         }

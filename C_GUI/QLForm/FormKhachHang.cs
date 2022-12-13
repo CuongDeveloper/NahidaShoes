@@ -1,4 +1,5 @@
-﻿using A_DAL.Entities;
+﻿using System.Text.RegularExpressions;
+using A_DAL.Entities;
 using B_BUS.IServices;
 using B_BUS.Services;
 using B_BUS.View_Models;
@@ -16,11 +17,13 @@ namespace C_GUI.QLForm
             _IQLKhachHang = new QLKhachHang();
             InitializeComponent();
             LoadData();
+            cbx_hoatdong.Checked = true;
+            txt_ma.Enabled =false;
         }
         public void LoadData()
         {
             int stt = 1;
-            dgrid_showKhachHang.ColumnCount = 9;
+            dgrid_showKhachHang.ColumnCount = 10;
             dgrid_showKhachHang.Columns[0].Name = "stt";
             dgrid_showKhachHang.Columns[1].Name = "id";
             dgrid_showKhachHang.Columns[2].Name = "ma";
@@ -29,13 +32,15 @@ namespace C_GUI.QLForm
             dgrid_showKhachHang.Columns[5].Name = "ngay sinh";
             dgrid_showKhachHang.Columns[6].Name = "sdt";
             dgrid_showKhachHang.Columns[7].Name = "dia chi";
-            dgrid_showKhachHang.Columns[8].Name = "trang thai";
+            dgrid_showKhachHang.Columns[8].Name = "Số CCCD";
+            dgrid_showKhachHang.Columns[9].Name = "trang thai";
             dgrid_showKhachHang.Rows.Clear();
             dgrid_showKhachHang.Columns[1].Visible = true;
+            dgrid_showKhachHang.AllowUserToAddRows = false;
             foreach (KhachHangView a in _IQLKhachHang.GetAllView())
             {
 
-                _ = dgrid_showKhachHang.Rows.Add(stt++, a.Khach.Id, a.Khach.MaKhachHang, a.Khach.TenKhachHang, a.Khach.Email, a.Khach.NgaySinh, a.Khach.Sdt, a.Khach.DiaChi, a.Khach.TrangThai == 1 ? "hoạt động" : "Không hoạt động");
+                _ = dgrid_showKhachHang.Rows.Add(stt++, a.Khach.Id, a.Khach.MaKhachHang, a.Khach.TenKhachHang, a.Khach.Email, a.Khach.NgaySinh, a.Khach.Sdt, a.Khach.DiaChi,a.Khach.SoCCCD, a.Khach.TrangThai == 1 ? "hoạt động" : "Không hoạt động");
             }
 
         }
@@ -43,13 +48,13 @@ namespace C_GUI.QLForm
         {
             return new KhachHang()
             {
-                MaKhachHang = txt_ma.Text,
+                MaKhachHang = (_IQLKhachHang.GetAll().Count + 1).ToString(),
                 TenKhachHang = txt_ten.Text,
                 Email = txt_email.Text,
                 NgaySinh = dtt_ngaysinh.Value,
                 Sdt = txt_sdt.Text,
-                DiaChi = txt_diachi.Text,
-
+                DiaChi = txt_diachi.Texts,
+                SoCCCD = tbx_socccd.Texts,
                 TrangThai = cbx_hoatdong.Checked == true ? 1 : 0,
 
             };
@@ -58,12 +63,13 @@ namespace C_GUI.QLForm
         {
             int index = e.RowIndex;
             _ID = Guid.Parse(dgrid_showKhachHang.Rows[index].Cells[1].Value.ToString());
-            txt_ma.Text = dgrid_showKhachHang.Rows[index].Cells[2].Value.ToString();
-            txt_ten.Text = dgrid_showKhachHang.Rows[index].Cells[3].Value.ToString();
+            txt_ma.Texts = dgrid_showKhachHang.Rows[index].Cells[2].Value.ToString();
+            txt_ten.Texts = dgrid_showKhachHang.Rows[index].Cells[3].Value.ToString();
 
             dtt_ngaysinh.Value = (DateTime)dgrid_showKhachHang.Rows[index].Cells[5].Value;
             txt_sdt.Text = dgrid_showKhachHang.Rows[index].Cells[6].Value.ToString();
-            txt_diachi.Text = dgrid_showKhachHang.Rows[index].Cells[7].Value.ToString();
+            txt_diachi.Texts = dgrid_showKhachHang.Rows[index].Cells[7].Value.ToString();
+            tbx_socccd.Texts = dgrid_showKhachHang.Rows[index].Cells[8].Value.ToString();
 
 
             KhachHang a = _IQLKhachHang.GetAllView().FirstOrDefault(c => c.Khach.Id == _ID).Khach;
@@ -83,6 +89,34 @@ namespace C_GUI.QLForm
 
         private void btn_them_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txt_ten.Texts))
+            {
+                _ = MessageBox.Show("Vui Lòng Không Để Trống");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(txt_diachi.Texts))
+            {
+                _ = MessageBox.Show("Vui Lòng Không Để Trống");
+                return;
+            }
+            if (string.IsNullOrEmpty(txt_email.Texts))
+            {
+                _ = MessageBox.Show("Vui Lòng Không Để Trống");
+                return;
+            }
+            if (Regex.IsMatch(txt_ten.Texts.Trim(), @"[0-9]+") == true)
+            {
+
+                MessageBox.Show("Tên Không chứa Số ", "ERR");
+                return;
+            }
+            if (Regex.IsMatch(txt_email.Texts, (@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$")) == false)
+            {
+
+                MessageBox.Show("Email Phải đúng dịnh dạng", "ERR");
+                return;
+            }
             _ = _IQLKhachHang.Add(GetvaluaContro());
             LoadData();
         }

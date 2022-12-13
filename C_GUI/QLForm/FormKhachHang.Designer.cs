@@ -48,6 +48,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.tbx_socccd = new C_GUI.RJControls.RJTextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgrid_showKhachHang)).BeginInit();
             this.SuspendLayout();
@@ -55,6 +57,8 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.tbx_socccd);
             this.groupBox1.Controls.Add(this.btn_xoa);
             this.groupBox1.Controls.Add(this.btn_sua);
             this.groupBox1.Controls.Add(this.btn_them);
@@ -91,7 +95,7 @@
             this.btn_xoa.FlatAppearance.BorderSize = 0;
             this.btn_xoa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_xoa.ForeColor = System.Drawing.Color.Black;
-            this.btn_xoa.Location = new System.Drawing.Point(674, 347);
+            this.btn_xoa.Location = new System.Drawing.Point(682, 418);
             this.btn_xoa.Name = "btn_xoa";
             this.btn_xoa.Size = new System.Drawing.Size(132, 39);
             this.btn_xoa.SizeImage = new System.Drawing.Size(20, 20);
@@ -99,6 +103,7 @@
             this.btn_xoa.Text = "Xóa";
             this.btn_xoa.TextColor = System.Drawing.Color.Black;
             this.btn_xoa.UseVisualStyleBackColor = false;
+            this.btn_xoa.Click += new System.EventHandler(this.btn_xoa_Click);
             // 
             // btn_sua
             // 
@@ -110,7 +115,7 @@
             this.btn_sua.FlatAppearance.BorderSize = 0;
             this.btn_sua.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_sua.ForeColor = System.Drawing.Color.Black;
-            this.btn_sua.Location = new System.Drawing.Point(536, 347);
+            this.btn_sua.Location = new System.Drawing.Point(530, 418);
             this.btn_sua.Name = "btn_sua";
             this.btn_sua.Size = new System.Drawing.Size(132, 39);
             this.btn_sua.SizeImage = new System.Drawing.Size(20, 20);
@@ -118,6 +123,7 @@
             this.btn_sua.Text = "Sửa";
             this.btn_sua.TextColor = System.Drawing.Color.Black;
             this.btn_sua.UseVisualStyleBackColor = false;
+            this.btn_sua.Click += new System.EventHandler(this.btn_sua_Click);
             // 
             // btn_them
             // 
@@ -129,7 +135,7 @@
             this.btn_them.FlatAppearance.BorderSize = 0;
             this.btn_them.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_them.ForeColor = System.Drawing.Color.Black;
-            this.btn_them.Location = new System.Drawing.Point(391, 347);
+            this.btn_them.Location = new System.Drawing.Point(392, 418);
             this.btn_them.Name = "btn_them";
             this.btn_them.Size = new System.Drawing.Size(132, 39);
             this.btn_them.SizeImage = new System.Drawing.Size(20, 20);
@@ -137,6 +143,7 @@
             this.btn_them.Text = "Thêm";
             this.btn_them.TextColor = System.Drawing.Color.Black;
             this.btn_them.UseVisualStyleBackColor = false;
+            this.btn_them.Click += new System.EventHandler(this.btn_them_Click);
             // 
             // cbx_khonghoatdong
             // 
@@ -220,6 +227,7 @@
             this.dtt_ngaysinh.BorderSize = 2;
             this.dtt_ngaysinh.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.dtt_ngaysinh.Location = new System.Drawing.Point(205, 261);
+            this.dtt_ngaysinh.MinDate = new System.DateTime(2011, 1, 1, 0, 0, 0, 0);
             this.dtt_ngaysinh.MinimumSize = new System.Drawing.Size(0, 35);
             this.dtt_ngaysinh.Name = "dtt_ngaysinh";
             this.dtt_ngaysinh.Size = new System.Drawing.Size(250, 35);
@@ -292,6 +300,7 @@
             this.dgrid_showKhachHang.RowTemplate.Height = 29;
             this.dgrid_showKhachHang.Size = new System.Drawing.Size(1191, 164);
             this.dgrid_showKhachHang.TabIndex = 7;
+            this.dgrid_showKhachHang.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgrid_showKhachHang_CellContentClick);
             // 
             // label7
             // 
@@ -356,6 +365,38 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Mã Khách Hàng";
             // 
+            // tbx_socccd
+            // 
+            this.tbx_socccd.BackColor = System.Drawing.SystemColors.Window;
+            this.tbx_socccd.BorderColor = System.Drawing.Color.Black;
+            this.tbx_socccd.BorderFocusColor = System.Drawing.Color.Red;
+            this.tbx_socccd.BorderRadius = 15;
+            this.tbx_socccd.BorderSize = 2;
+            this.tbx_socccd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.tbx_socccd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tbx_socccd.Location = new System.Drawing.Point(884, 336);
+            this.tbx_socccd.Margin = new System.Windows.Forms.Padding(4);
+            this.tbx_socccd.MaxLength = 20;
+            this.tbx_socccd.Multiline = false;
+            this.tbx_socccd.Name = "tbx_socccd";
+            this.tbx_socccd.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.tbx_socccd.PasswordChar = false;
+            this.tbx_socccd.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.tbx_socccd.PlaceholderText = "";
+            this.tbx_socccd.Size = new System.Drawing.Size(250, 35);
+            this.tbx_socccd.TabIndex = 44;
+            this.tbx_socccd.Texts = "";
+            this.tbx_socccd.UnderlinedStyle = false;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(740, 351);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(68, 20);
+            this.label8.TabIndex = 45;
+            this.label8.Text = "Số CCCD";
+            // 
             // FormKhachHang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -393,5 +434,7 @@
         private RJControls.RJButton btn_xoa;
         private RJControls.RJButton btn_sua;
         private RJControls.RJButton btn_them;
+        private Label label8;
+        private RJControls.RJTextBox tbx_socccd;
     }
 }

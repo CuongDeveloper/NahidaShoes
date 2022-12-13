@@ -16,6 +16,8 @@ namespace C_GUI.QLForm
             _IQLGiay = new QLGiay();
             InitializeComponent();
             LoadData(_IQLGiay.GetAllView());
+            cbx_hoatdong.Checked = true;
+            txt_ma.Enabled = false;
         }
         public void LoadData(List<GiayView> giayViews)
         {
@@ -29,6 +31,7 @@ namespace C_GUI.QLForm
             dgrid_showGiay.Columns[4].Name = "trang thai";
             dgrid_showGiay.Rows.Clear();
             dgrid_showGiay.Columns[1].Visible = true;
+            dgrid_showGiay.AllowUserToAddRows = false;
             foreach (GiayView a in giayViews)
             {
 
@@ -41,7 +44,7 @@ namespace C_GUI.QLForm
         {
             return new Giay()
             {
-                MaGiay = txt_ma.Texts,
+                MaGiay = (_IQLGiay.GetAll().Count + 1).ToString(),
                 TenGiay = txt_ten.Texts,
                 TrangThai = cbx_hoatdong.Checked == true ? 1 : 0,
             };
@@ -64,26 +67,51 @@ namespace C_GUI.QLForm
 
         private void btn_them_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Bạn có muốn thêm", "Thông báo", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
+            try
             {
-                _ = _IQLGiay.Add(GetvaluaContro());
-                LoadData(_IQLGiay.GetAllView());
+                if (string.IsNullOrEmpty(txt_ten.Texts))
+                {
+                    _ = MessageBox.Show("Vui Lòng Không Để Trống");
+                    return;
+                }
+                DialogResult dialogResult = MessageBox.Show("Bạn có muốn thêm", "Thông báo", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    _ = _IQLGiay.Add(GetvaluaContro());
+                    LoadData(_IQLGiay.GetAllView());
+                }
             }
-
+            catch (Exception exception)
+            {
+                MessageBox.Show("Vui Lòng Kiểm Tra Đầu Vào");
+            }
+          
         }
 
         private void btn_sua_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Bạn có muốn sửa", "Thông báo", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
+            try
             {
-                bool thongBao = _IQLGiay.Update(new A_DAL.Entities.Giay() { Id = _ID, MaGiay = txt_ma.Texts, TenGiay = txt_ten.Texts, TrangThai = cbx_hoatdong.Checked == true ? 1 : 0 });
-                if (thongBao)
+                if (string.IsNullOrEmpty(txt_ten.Texts))
                 {
-                    _ = MessageBox.Show("Sửa thành công");
-                    LoadData(_IQLGiay.GetAllView());
+                    _ = MessageBox.Show("Vui Lòng Không Để Trống");
+                    return;
                 }
+
+                DialogResult dialogResult = MessageBox.Show("Bạn có muốn sửa", "Thông báo", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    bool thongBao = _IQLGiay.Update(new A_DAL.Entities.Giay() { Id = _ID, MaGiay = txt_ma.Texts, TenGiay = txt_ten.Texts, TrangThai = cbx_hoatdong.Checked == true ? 1 : 0 });
+                    if (thongBao)
+                    {
+                        _ = MessageBox.Show("Sửa thành công");
+                        LoadData(_IQLGiay.GetAllView());
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show("Vui Lòng Chọn Lại Đầu vào ");
             }
 
         }

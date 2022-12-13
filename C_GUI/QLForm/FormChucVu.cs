@@ -16,6 +16,7 @@ namespace C_GUI.Views
             LoadData(_IQlChucVu.GetAllView());
             rbtn_hoatdong.Checked = true;
             txt_ma.Enabled=false;
+            rbtn_hoatdong.Checked =true;
         }
         public void LoadData(List<ChucVuView> chucVuViews)
         {
@@ -40,7 +41,7 @@ namespace C_GUI.Views
         {
             return new ChucVu()
             {
-                MaChucVu = txt_ma.Texts,
+                MaChucVu = (_IQlChucVu.GetAll().Count + 1).ToString(),
                 TenChucVu = txt_ten.Texts,
                 TrangThai = rbtn_hoatdong.Checked == true ? 1 : 0,
             };
@@ -64,30 +65,57 @@ namespace C_GUI.Views
 
         private void btn_them_Click(object sender, EventArgs e)
         {
-
-            DialogResult dialogResult = MessageBox.Show("Bạn có muốn thêm", "Thông báo", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
+            try
             {
+                if (string.IsNullOrEmpty(txt_ten.Texts))
+                {
+                    _ = MessageBox.Show("Vui Lòng Không Để Trống");
+                    return;
+                }
+                DialogResult dialogResult = MessageBox.Show("Bạn có muốn thêm", "Thông báo", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
 
 
-                _ = _IQlChucVu.Add(GetvaluaContro());
-                LoadData(_IQlChucVu.GetAllView());
+                    _ = _IQlChucVu.Add(GetvaluaContro());
+                    LoadData(_IQlChucVu.GetAllView());
+                }
+
             }
+            catch (Exception exception)
+            {
+                MessageBox.Show("Vui Lòng Không Nhập lung tung");
+            }
+           
 
+            
         }
 
         private void btn_sua_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Bạn có muốn sửa", "Thông báo", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
+            try
             {
-                bool thongBao = _IQlChucVu.Update(new A_DAL.Entities.ChucVu() { Id = _ID, MaChucVu = txt_ma.Texts, TenChucVu = txt_ten.Texts, TrangThai = rbtn_hoatdong.Checked == true ? 1 : 0 });
-                if (thongBao)
+                if (string.IsNullOrEmpty(txt_ten.Texts))
                 {
-                    _ = MessageBox.Show("Sửa thành công");
-                    LoadData(_IQlChucVu.GetAllView());
+                    _ = MessageBox.Show("Vui Lòng Không Để Trống");
+                    return;
+                }
+                DialogResult dialogResult = MessageBox.Show("Bạn có muốn sửa", "Thông báo", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    bool thongBao = _IQlChucVu.Update(new A_DAL.Entities.ChucVu() { Id = _ID, MaChucVu = txt_ma.Texts, TenChucVu = txt_ten.Texts, TrangThai = rbtn_hoatdong.Checked == true ? 1 : 0 });
+                    if (thongBao)
+                    {
+                        _ = MessageBox.Show("Sửa thành công");
+                        LoadData(_IQlChucVu.GetAllView());
+                    }
                 }
             }
+            catch (Exception exception)
+            {
+                MessageBox.Show("vui Lòng điền chuẩn thông Tin");
+            }
+            
 
         }
 
