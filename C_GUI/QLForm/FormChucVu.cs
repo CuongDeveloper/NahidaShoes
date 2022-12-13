@@ -15,7 +15,7 @@ namespace C_GUI.Views
             InitializeComponent();
             LoadData(_IQlChucVu.GetAllView());
             rbtn_hoatdong.Checked = true;
-            txt_ma.Enabled=false;
+            txt_ma.Enabled = false;
         }
         public void LoadData(List<ChucVuView> chucVuViews)
         {

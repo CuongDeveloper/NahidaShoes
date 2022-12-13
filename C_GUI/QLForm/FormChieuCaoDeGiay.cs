@@ -15,7 +15,7 @@ namespace C_GUI.QLForm
             InitializeComponent();
             LoadData(_iQLChieuCaoDeGiay.GetAllView());
             rbtn_hoatdong.Checked = true;
-            txt_ma.Enabled=false;
+            txt_ma.Enabled = false;
         }
         public void LoadData(List<ChieuCaoDeGiayView> chieuCaoDeGiayViews)
         {
@@ -27,7 +27,7 @@ namespace C_GUI.QLForm
             dgrid_show.Columns[3].Name = "ten";
             dgrid_show.Columns[4].Name = "trang thai";
             dgrid_show.Rows.Clear();
-            dgrid_show.AllowUserToAddRows=false;    
+            dgrid_show.AllowUserToAddRows = false;
             dgrid_show.Columns[1].Visible = true;
             foreach (B_BUS.View_Models.ChieuCaoDeGiayView a in chieuCaoDeGiayViews)
             {
@@ -62,9 +62,9 @@ namespace C_GUI.QLForm
                     LoadData(_iQLChieuCaoDeGiay.GetAllView());
                 }
             }
-            catch (Exception exception)
+            catch (Exception)
             {
-                MessageBox.Show("vui Lòng điền đúng giá trị đầu vào");
+                _ = MessageBox.Show("vui Lòng điền đúng giá trị đầu vào");
             }
 
         }
@@ -90,11 +90,11 @@ namespace C_GUI.QLForm
                     }
                 }
             }
-            catch (Exception exception)
+            catch (Exception)
             {
-                MessageBox.Show("vui Lòng điền giá trị đầu vào");
+                _ = MessageBox.Show("vui Lòng điền giá trị đầu vào");
             }
-  
+
 
         }
 

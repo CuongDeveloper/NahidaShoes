@@ -16,7 +16,7 @@ namespace C_GUI.QLForm
             LoadData(_IQlCuaHang.GetAllView());
             rbtn_hoatdong.Checked = true;
             txt_ma.Enabled = false;
-            
+
         }
 
         private void FormCuaHang_Load(object sender, EventArgs e)
@@ -92,12 +92,12 @@ namespace C_GUI.QLForm
                     LoadData(_IQlCuaHang.GetAllView());
                 }
             }
-            catch (Exception exception)
+            catch (Exception)
             {
-                MessageBox.Show("Kiểm Tra Giá Trị Đầu Vào");
+                _ = MessageBox.Show("Kiểm Tra Giá Trị Đầu Vào");
             }
-            
-           
+
+
 
         }
 
@@ -126,11 +126,11 @@ namespace C_GUI.QLForm
                     }
                 }
             }
-            catch (Exception exception)
+            catch (Exception)
             {
-                MessageBox.Show("kiểm Tra Giá trị đầu Vào");
+                _ = MessageBox.Show("kiểm Tra Giá trị đầu Vào");
             }
-          
+
 
 
         }

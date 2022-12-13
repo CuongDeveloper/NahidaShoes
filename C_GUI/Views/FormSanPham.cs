@@ -1,11 +1,11 @@
 ﻿using A_DAL.Entities;
 using B_BUS.IServices;
 using B_BUS.Services;
+using B_BUS.View_Models;
 using C_GUI.QLForm;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Text.RegularExpressions;
-using B_BUS.View_Models;
 using Excel = Microsoft.Office.Interop.Excel;
 
 
@@ -66,7 +66,7 @@ namespace C_GUI.Views
             LoadComBo();
             btn_export.Visible = false;
             dTheLoai();
-            
+
             //cmb_mausac.SelectedItem="Màu Sắc 1";
             //_rjcmbNSX.SelectedItem=1;
             //_rjcmbSize.SelectedItem = 1;
@@ -78,21 +78,21 @@ namespace C_GUI.Views
 
         private void dTheLoai()
         {
-           // var ten = _Giay.GetAll().FirstOrDefault(c => c.TenGiay == _rjcmbTenGiay.Texts);
+            // var ten = _Giay.GetAll().FirstOrDefault(c => c.TenGiay == _rjcmbTenGiay.Texts);
             dgrvtheloai.ColumnCount = 2;
             dgrvtheloai.Columns[0].Name = "Tên";
             dgrvtheloai.Columns[1].Name = "Thê Loại";
             dgrvtheloai.Rows.Clear();
             dgrvtheloai.Columns[0].Visible = false;
-            dgrvtheloai.AllowUserToAddRows=false;
-            foreach (var c in _ChiTietTheLoai.GetAllView().Where(c=>c.ChiTietGiay.Id ==Idwhenclick))
+            dgrvtheloai.AllowUserToAddRows = false;
+            foreach (ChiTietTheLoaiView? c in _ChiTietTheLoai.GetAllView().Where(c => c.ChiTietGiay.Id == Idwhenclick))
             {
-                dgrvtheloai.Rows.Add(c.ChiTietGiay.IdGiay,c.TheLoai.TenTheLoai);
+                _ = dgrvtheloai.Rows.Add(c.ChiTietGiay.IdGiay, c.TheLoai.TenTheLoai);
             }
         }
         private void rjTextBox1__TextChanged(object sender, EventArgs e)
         {
-            LoadData(_ChiTietGiay.GetAllView().Where(c => c.Giay.TenGiay.ToLower().Contains(tbx_timkiem.Texts.ToLower()) ||c.Size.TenSize.ToLower().Contains(tbx_timkiem.Texts.ToLower())|| c.Nsx.TenNsx.ToLower().Contains(tbx_timkiem.Texts.ToLower())|| c.MauSac.TenMauSac.ToLower().Contains(tbx_timkiem.Texts.ToLower())|| c.HangGiay.TenHangGiay.ToLower().Contains(tbx_timkiem.Texts.ToLower())).ToList());
+            LoadData(_ChiTietGiay.GetAllView().Where(c => c.Giay.TenGiay.ToLower().Contains(tbx_timkiem.Texts.ToLower()) || c.Size.TenSize.ToLower().Contains(tbx_timkiem.Texts.ToLower()) || c.Nsx.TenNsx.ToLower().Contains(tbx_timkiem.Texts.ToLower()) || c.MauSac.TenMauSac.ToLower().Contains(tbx_timkiem.Texts.ToLower()) || c.HangGiay.TenHangGiay.ToLower().Contains(tbx_timkiem.Texts.ToLower())).ToList());
         }
 
         public bool check()
@@ -226,7 +226,7 @@ namespace C_GUI.Views
                 return false;
             }
 
-           
+
             return true;
         }
         public void LoadComBo()
@@ -358,11 +358,11 @@ namespace C_GUI.Views
                     }
                 }
             }
-            catch (Exception exception)
+            catch (Exception)
             {
-                MessageBox.Show("Lỗi");
+                _ = MessageBox.Show("Lỗi");
             }
-            
+
         }
 
         private void _rjbtnAdd_Click(object sender, EventArgs e)
@@ -403,10 +403,10 @@ namespace C_GUI.Views
             {
                 return;
             }
-            
-            if (_ChiTietGiay.CheckMa(size.Id,nsx.Id,mausac.Id,hanggiay.Id,giay.Id,ccDeGiay.Id) == false)
+
+            if (_ChiTietGiay.CheckMa(size.Id, nsx.Id, mausac.Id, hanggiay.Id, giay.Id, ccDeGiay.Id) == false)
             {
-                MessageBox.Show("Mã Trùng");
+                _ = MessageBox.Show("Mã Trùng");
                 return;
             }
 
@@ -511,7 +511,7 @@ namespace C_GUI.Views
                     _ = MessageBox.Show("KHông Nhập chữ hoặc Ký tự đặc Biêt");
                     return;
                 }
-                if (check()==false)
+                if (check() == false)
                 {
                     return;
                 }
@@ -553,18 +553,18 @@ namespace C_GUI.Views
                     }
                 }
             }
-            catch (Exception exception)
+            catch (Exception)
             {
-                MessageBox.Show("Lỗi rồi");
+                _ = MessageBox.Show("Lỗi rồi");
             }
-           
+
         }
 
         private void btn_link_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            Hide();
             FormImport vn = new();
-            this.Hide();
+            Hide();
             _ = vn.ShowDialog();
 
             #region MyRegion
@@ -914,11 +914,11 @@ namespace C_GUI.Views
         {
             if (string.IsNullOrEmpty(cmb_theloai.Texts))
             {
-                 MessageBox.Show("Vui Lòng Chọn Thể Loại");
+                _ = MessageBox.Show("Vui Lòng Chọn Thể Loại");
                 return false;
             }
 
-          
+
 
             return true;
         }
@@ -947,25 +947,25 @@ namespace C_GUI.Views
                     //    return;
                     //}
                     if (_Ichotiett.Add(new ChiTietTheLoai()
-                        {
-                            IdChiTietGiay = Idwhenclick,
-                            IdTheLoai = idtheloai,
-                        }))
                     {
-                        MessageBox.Show("THêm thành công");
+                        IdChiTietGiay = Idwhenclick,
+                        IdTheLoai = idtheloai,
+                    }))
+                    {
+                        _ = MessageBox.Show("THêm thành công");
                         return;
                     }
 
-                    _Ichotiett.Add(new ChiTietTheLoai()
+                    _ = _Ichotiett.Add(new ChiTietTheLoai()
                     {
                         IdChiTietGiay = Idwhenclick,
                         IdTheLoai = idtheloai,
                     });
                 }
             }
-            catch (Exception es)
+            catch (Exception)
             {
-                MessageBox.Show("Không đc trùng");
+                _ = MessageBox.Show("Không đc trùng");
             }
 
 
@@ -1061,6 +1061,6 @@ namespace C_GUI.Views
             return xByte;
         }
 
-      
+
     }
 }
