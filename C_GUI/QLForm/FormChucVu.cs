@@ -14,6 +14,8 @@ namespace C_GUI.Views
             _IQlChucVu = new QLChucVu();
             InitializeComponent();
             LoadData(_IQlChucVu.GetAllView());
+            rbtn_hoatdong.Checked = true;
+            txt_ma.Enabled=false;
         }
         public void LoadData(List<ChucVuView> chucVuViews)
         {
@@ -26,6 +28,7 @@ namespace C_GUI.Views
             dgrid_show.Columns[4].Name = "trang thai";
             dgrid_show.Rows.Clear();
             dgrid_show.Columns[1].Visible = false;
+            dgrid_show.AllowUserToAddRows = false;
             foreach (B_BUS.View_Models.ChucVuView a in chucVuViews)
             {
                 _ = dgrid_show.Rows.Add(stt++, a.ChucVu.Id, a.ChucVu.MaChucVu, a.ChucVu.TenChucVu, a.ChucVu.TrangThai == 1 ? "hoat dong" : "khong hoat dong");

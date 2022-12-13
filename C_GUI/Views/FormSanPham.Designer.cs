@@ -71,10 +71,14 @@
             this.btn_export = new C_GUI.RJControls.RJButton();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btn_linkanh = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.dgrvtheloai = new System.Windows.Forms.DataGridView();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._dgrvThongTinSanPham)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgrvtheloai)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -127,7 +131,7 @@
             this.btn_themtheloai.FlatAppearance.BorderSize = 0;
             this.btn_themtheloai.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_themtheloai.ForeColor = System.Drawing.Color.Black;
-            this.btn_themtheloai.Location = new System.Drawing.Point(441, 275);
+            this.btn_themtheloai.Location = new System.Drawing.Point(441, 285);
             this.btn_themtheloai.Name = "btn_themtheloai";
             this.btn_themtheloai.Size = new System.Drawing.Size(162, 39);
             this.btn_themtheloai.SizeImage = new System.Drawing.Size(20, 20);
@@ -631,7 +635,7 @@
             this.groupBox2.Controls.Add(this._dgrvThongTinSanPham);
             this.groupBox2.Location = new System.Drawing.Point(19, 408);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1107, 341);
+            this.groupBox2.Size = new System.Drawing.Size(996, 341);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Thông Tin Sản Phẩm";
@@ -668,7 +672,7 @@
             this.tbx_timkiem.TabIndex = 1;
             this.tbx_timkiem.Texts = "";
             this.tbx_timkiem.UnderlinedStyle = false;
-            this.tbx_timkiem._TextChanged += new System.EventHandler(this.btn_export_Click);
+            this.tbx_timkiem._TextChanged += new System.EventHandler(this.rjTextBox1__TextChanged);
             // 
             // _dgrvThongTinSanPham
             // 
@@ -677,7 +681,7 @@
             this._dgrvThongTinSanPham.Name = "_dgrvThongTinSanPham";
             this._dgrvThongTinSanPham.RowHeadersWidth = 51;
             this._dgrvThongTinSanPham.RowTemplate.Height = 29;
-            this._dgrvThongTinSanPham.Size = new System.Drawing.Size(1034, 216);
+            this._dgrvThongTinSanPham.Size = new System.Drawing.Size(955, 216);
             this._dgrvThongTinSanPham.TabIndex = 0;
             this._dgrvThongTinSanPham.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this._dgrvThongTinSanPham_CellContentClick);
             // 
@@ -760,11 +764,32 @@
             this.btn_linkanh.UseVisualStyleBackColor = true;
             this.btn_linkanh.Click += new System.EventHandler(this.btn_linkanh_Click);
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.dgrvtheloai);
+            this.groupBox3.Location = new System.Drawing.Point(1051, 421);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(382, 288);
+            this.groupBox3.TabIndex = 30;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Thể lọai";
+            // 
+            // dgrvtheloai
+            // 
+            this.dgrvtheloai.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgrvtheloai.Location = new System.Drawing.Point(53, 72);
+            this.dgrvtheloai.Name = "dgrvtheloai";
+            this.dgrvtheloai.RowHeadersWidth = 51;
+            this.dgrvtheloai.RowTemplate.Height = 29;
+            this.dgrvtheloai.Size = new System.Drawing.Size(300, 188);
+            this.dgrvtheloai.TabIndex = 0;
+            // 
             // FormSanPham
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1445, 749);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.btn_linkanh);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btn_export);
@@ -784,6 +809,8 @@
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this._dgrvThongTinSanPham)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgrvtheloai)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -833,5 +860,7 @@
         private RJControls.RJButton btn_export;
         private PictureBox pictureBox1;
         private Button btn_linkanh;
+        private GroupBox groupBox3;
+        private DataGridView dgrvtheloai;
     }
 }

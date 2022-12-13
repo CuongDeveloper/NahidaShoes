@@ -14,6 +14,9 @@ namespace C_GUI.QLForm
             _IQlCuaHang = new QLCuaHang();
             InitializeComponent();
             LoadData(_IQlCuaHang.GetAllView());
+            rbtn_hoatdong.Checked = true;
+            txt_ma.Enabled = false;
+            
         }
 
         private void FormCuaHang_Load(object sender, EventArgs e)
@@ -31,6 +34,7 @@ namespace C_GUI.QLForm
             dgrid_show.Columns[4].Name = "dia chi";
             dgrid_show.Columns[5].Name = "trang thai";
             dgrid_show.Rows.Clear();
+            dgrid_show.AllowUserToAddRows = false;
             dgrid_show.Columns[1].Visible = false;
             foreach (CuaHangView a in cuaHangViews)
             {
@@ -43,7 +47,7 @@ namespace C_GUI.QLForm
         {
             return new CuaHang()
             {
-                MaCuaHang = txt_ma.Texts,
+                MaCuaHang = (_IQlCuaHang.GetAll().Count + 1).ToString(),
                 TenCuaHang = txt_ten.Texts,
                 DiaChi = txt_diachi.Texts,
                 TrangThai = rbtn_hoatdong.Checked == true ? 1 : 0,
@@ -69,27 +73,64 @@ namespace C_GUI.QLForm
 
         private void btn_them_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Bạn có muốn thêm", "Thông báo", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
+            try
             {
-                _ = _IQlCuaHang.Add(GetvaluaContro());
-                LoadData(_IQlCuaHang.GetAllView());
+                if (string.IsNullOrEmpty(txt_diachi.Texts))
+                {
+                    _ = MessageBox.Show("Vui Lòng Không Để Trống");
+                    return;
+                }
+                if (string.IsNullOrEmpty(txt_ten.Texts))
+                {
+                    _ = MessageBox.Show("Vui Lòng Không Để Trống");
+                    return;
+                }
+                DialogResult dialogResult = MessageBox.Show("Bạn có muốn thêm", "Thông báo", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    _ = _IQlCuaHang.Add(GetvaluaContro());
+                    LoadData(_IQlCuaHang.GetAllView());
+                }
             }
+            catch (Exception exception)
+            {
+                MessageBox.Show("Kiểm Tra Giá Trị Đầu Vào");
+            }
+            
+           
 
         }
 
         private void btn_sua_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Bạn có muốn sửa", "Thông báo", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
+            try
             {
-                bool thongBao = _IQlCuaHang.Update(new A_DAL.Entities.CuaHang() { Id = _ID, MaCuaHang = txt_ma.Texts, TenCuaHang = txt_ten.Texts, DiaChi = txt_diachi.Texts, TrangThai = rbtn_hoatdong.Checked == true ? 1 : 0 });
-                if (thongBao)
+                if (string.IsNullOrEmpty(txt_diachi.Texts))
                 {
-                    _ = MessageBox.Show("Sửa thành công");
-                    LoadData(_IQlCuaHang.GetAllView());
+                    _ = MessageBox.Show("Vui Lòng Không Để Trống");
+                    return;
+                }
+                if (string.IsNullOrEmpty(txt_ten.Texts))
+                {
+                    _ = MessageBox.Show("Vui Lòng Không Để Trống");
+                    return;
+                }
+                DialogResult dialogResult = MessageBox.Show("Bạn có muốn sửa", "Thông báo", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    bool thongBao = _IQlCuaHang.Update(new A_DAL.Entities.CuaHang() { Id = _ID, MaCuaHang = txt_ma.Texts, TenCuaHang = txt_ten.Texts, DiaChi = txt_diachi.Texts, TrangThai = rbtn_hoatdong.Checked == true ? 1 : 0 });
+                    if (thongBao)
+                    {
+                        _ = MessageBox.Show("Sửa thành công");
+                        LoadData(_IQlCuaHang.GetAllView());
+                    }
                 }
             }
+            catch (Exception exception)
+            {
+                MessageBox.Show("kiểm Tra Giá trị đầu Vào");
+            }
+          
 
 
         }

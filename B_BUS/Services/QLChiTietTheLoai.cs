@@ -13,11 +13,13 @@ namespace B_BUS.Services
 
         //bien
         public IGenericRepository<ChiTietGiay> IgChitietGiay;
+        public IGenericRepository<TheLoai> Itheloai;
 
         public QLChiTietTheLoai()
         {
             igChiTietTheLoai = new GenericRepository<ChiTietTheLoai>();
             IgChitietGiay = new GenericRepository<ChiTietGiay>();
+            Itheloai = new GenericRepository<TheLoai>();
         }
         public bool Add(ChiTietTheLoai obj)
         {
@@ -37,15 +39,22 @@ namespace B_BUS.Services
             return igChiTietTheLoai.Delete(obj);
         }
 
+        public bool checkma(Guid obj)
+        {
+            return igChiTietTheLoai.GetAll().Any(c => c.Id == obj);
+        }
+
         public List<ChiTietTheLoaiView> GetAllView()
         {
             // getall
             List<ChiTietTheLoaiView> lst = (from a in igChiTietTheLoai.GetAll()
                                             join b in IgChitietGiay.GetAll() on a.IdChiTietGiay equals b.Id
+                                            join c in Itheloai.GetAll() on a.IdTheLoai equals c.Id
                                             select new ChiTietTheLoaiView()
                                             {
                                                 ChiTietTheLoai = a,
-                                                ChiTietGiay = b
+                                                ChiTietGiay = b,
+                                                TheLoai = c
                                             }).ToList();
             return lst;
         }

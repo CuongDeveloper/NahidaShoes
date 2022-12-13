@@ -1,5 +1,6 @@
 ﻿using A_DAL.Entities;
 using B_BUS.IServices;
+using B_BUS.Services;
 
 namespace C_GUI.QLForm
 {
@@ -10,6 +11,7 @@ namespace C_GUI.QLForm
         public FormTheLoai()
         {
             InitializeComponent();
+            _QlTheLoai = new QLTheLoai();
         }
         public void LoadData()
         {
