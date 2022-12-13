@@ -75,11 +75,19 @@ namespace C_GUI.QLForm
 
         private void btn_xoa_Click(object sender, EventArgs e)
         {
-            bool thongBao = _QlTheLoai.Delete(_QlTheLoai.GetAll().Find(c => c.Id == _ID));
-            if (thongBao)
+            try
             {
-                _ = MessageBox.Show("Xóa thành công");
-                LoadData();
+                bool thongBao = _QlTheLoai.Delete(_QlTheLoai.GetAll().Find(c => c.Id == _ID));
+                if (thongBao)
+                {
+                    _ = MessageBox.Show("Xóa thành công");
+                    LoadData();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                _ = MessageBox.Show(ex.Message);
             }
         }
 

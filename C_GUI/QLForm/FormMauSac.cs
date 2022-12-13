@@ -87,17 +87,23 @@ namespace C_GUI.QLForm
 
         private void btn_xoa_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Bạn có muốn xóa", "Thông báo", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
+            try
             {
-                bool thongBao = _IQlMauSac.Delete(_IQlMauSac.GetAll().Find(c => c.Id == _ID));
-                if (thongBao)
+                DialogResult dialogResult = MessageBox.Show("Bạn có muốn xóa", "Thông báo", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
                 {
-                    _ = MessageBox.Show("Xóa thành công");
-                    LoadData(_IQlMauSac.GetAllView());
+                    bool thongBao = _IQlMauSac.Delete(_IQlMauSac.GetAll().Find(c => c.Id == _ID));
+                    if (thongBao)
+                    {
+                        _ = MessageBox.Show("Xóa thành công");
+                        LoadData(_IQlMauSac.GetAllView());
+                    }
                 }
             }
-
+            catch (Exception ex)
+            {
+                _ = MessageBox.Show(ex.Message);
+            }
         }
 
         private void _tbxTimKiem__TextChanged(object sender, EventArgs e)

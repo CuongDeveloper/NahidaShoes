@@ -242,6 +242,16 @@ namespace C_GUI.Views
                 {
                     if (_tbxCMND.Texts.Trim() != "")
                     {
+                        try
+                        {
+                            int sodienThoai = Convert.ToInt32(_tbxSoDienThoai.Texts.Trim());
+                            int socmnd = Convert.ToInt32(_tbxCMND.Texts.Trim());
+                        }
+                        catch (Exception)
+                        {
+                            _ = MessageBox.Show("Kiểm tra lại các giá trị đầu vào");
+                            return;
+                        }
                         string? tenKhachHang = _tbxTenKhachHang.Texts.Trim() == "" ? null : _tbxTenKhachHang.Texts.Trim();
                         DateTime ngaySinh = _dtpNgaySinh.Value;
                         string? diaChi = _tbxDiaChi.Texts.Trim() == "" ? null : _tbxDiaChi.Texts.Trim();
