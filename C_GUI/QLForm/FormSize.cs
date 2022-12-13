@@ -38,8 +38,23 @@ namespace C_GUI.QLForm
 
         }
 
-        public Size GetvaluaContro()
+        public Size? GetvaluaContro()
         {
+            try
+            {
+                int SoSize = int.Parse(txt_sosize.Texts);
+                if (SoSize <= 0)
+                {
+                    _ = MessageBox.Show("Kiểm tra dữ liệu nhập vào");
+                    return null;
+                }
+            }
+            catch (Exception)
+            {
+
+                _ = MessageBox.Show("Kiểm tra dữ liệu nhập vào");
+                return null;
+            }
             return new Size()
             {
                 MaSize = txt_ma.Texts,
@@ -50,9 +65,15 @@ namespace C_GUI.QLForm
         }
         private void btn_them_Click_1(object sender, EventArgs e)
         {
+            if (GetvaluaContro() == null)
+            {
+                return;
+            }
+
             DialogResult dialogResult = MessageBox.Show("Bạn có muốn thêm không", "Thông báo", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
+
                 _ = _IQLSize.Add(GetvaluaContro());
                 LoadData(_IQLSize.GetAllView());
             }
@@ -61,9 +82,15 @@ namespace C_GUI.QLForm
 
         private void btn_sua_Click(object sender, EventArgs e)
         {
+            if (GetvaluaContro() == null)
+            {
+                return;
+            }
+
             DialogResult dialogResult = MessageBox.Show("Bạn có muốn thêm sửa", "Thông báo", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
+
                 bool thongBao = _IQLSize.Update(new A_DAL.Entities.Size()
                 {
                     Id = _ID,
@@ -83,15 +110,24 @@ namespace C_GUI.QLForm
 
         private void btn_xoa_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Bạn có muốn xóa không", "Thông báo", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
+
+            try
             {
-                bool thongBao = _IQLSize.Delete(_IQLSize.GetAll().Find(c => c.Id == _ID));
-                if (thongBao)
+                DialogResult dialogResult = MessageBox.Show("Bạn có muốn xóa không", "Thông báo", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
                 {
-                    _ = MessageBox.Show("Xóa thành công");
-                    LoadData(_IQLSize.GetAllView());
+                    bool thongBao = _IQLSize.Delete(_IQLSize.GetAll().Find(c => c.Id == _ID));
+                    if (thongBao)
+                    {
+                        _ = MessageBox.Show("Xóa thành công");
+                        LoadData(_IQLSize.GetAllView());
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+
+                _ = MessageBox.Show(ex.Message);
             }
 
         }
