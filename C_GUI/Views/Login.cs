@@ -10,7 +10,7 @@ namespace C_GUI.Views
         {
             InitializeComponent();
             _qlNhanVien = new QLNhanVien();
-            _tbxMaNhanVien.Texts = "NV1";
+            _tbxMaNhanVien.Texts = "QL1";
             _tbxMatKhau.Texts = "00000";
         }
 

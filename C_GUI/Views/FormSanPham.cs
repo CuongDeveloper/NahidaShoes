@@ -1035,7 +1035,7 @@ namespace C_GUI.Views
             }
         }
 
-        private Image anhsp;
+        private Image anhsp = Properties.Resources.ch__m_c;
         private void btn_linkanh_Click(object sender, EventArgs e)
         {
             try

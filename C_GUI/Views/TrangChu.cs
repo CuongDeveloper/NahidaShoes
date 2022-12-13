@@ -281,7 +281,7 @@ namespace C_GUI.Views
 
         private void iconButton5_Click(object sender, EventArgs e)
         {
-            OpenChildForms(new FormChiTietGiay(), sender);
+            OpenChildForms(new FormGiay(), sender);
             Hidesubmenu();
         }
 
